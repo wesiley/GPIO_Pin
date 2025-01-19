@@ -19,7 +19,7 @@ O código com a lógica adotada pelo grupo se encontra no presente reposítório
 
 Com os arquivos devidamente instalados e configurados o usuário receberá as instruções por meio de linha de comando e assim poderá escolher quais teclas utilizar no teclado matricial.
 
-__=== TESTE DO TECLADO MATRICIAL ===__
+__=== TESTE DO TECLADO MATRICIAL ===__<br>
 1 a 9: Aumenta o tempo de duracao padrão (100 ms) em N vezes<br>
 A: LED Vermelho<br>
 B: LED Azul<br>
