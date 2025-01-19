@@ -17,7 +17,7 @@ O código com a lógica adotada pelo grupo se encontra no presente reposítório
 
 __Projetos pessoais publicados no Wokwi__
 
-Ana Karolina Disigant Reis: [Teclado Matricial](https://wokwi.com/projects/420523283314492417)<br>
-Andressa Sousa Fonseca: [Teclado Matricial](https://wokwi.com/projects/420513649334097921)<br>
-Luiz Rodrigo Oliveira da Silva: [Teclado Matricial](https://wokwi.com/projects/420521267008450561)<br>
-Matheus Santos Souza: [Teclado Matricial](https://wokwi.com/projects/420371965130407937)
+[Teclado Matricial - Ana Karolina Disigant Reis](https://wokwi.com/projects/420523283314492417)<br>
+[Teclado Matricial - Andressa Sousa Fonseca](https://wokwi.com/projects/420513649334097921)<br>
+[Teclado Matricial - Luiz Rodrigo Oliveira da Silva](https://wokwi.com/projects/420521267008450561)<br>
+[Teclado Matricial -  Matheus Santos Souza](https://wokwi.com/projects/420371965130407937)
