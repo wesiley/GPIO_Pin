@@ -82,3 +82,4 @@ O programa continuará em execução até ser interrompido manualmente. Para par
 ### Observações de Segurança
 - Sempre use resistores apropriados para os LEDs.
 - Evite sobrecarga de corrente nos pinos GPIO.
+
