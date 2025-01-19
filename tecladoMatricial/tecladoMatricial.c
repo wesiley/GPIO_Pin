@@ -7,9 +7,10 @@
 #define GREEN 11
 #define BUZZER 21
 
-uint columns[4] = {4, 3, 2, 28}; 
-uint rows[4] = {8, 7, 6, 5};
+uint columns[4] = {4, 3, 2, 28};  // Colunas do teclado, pinos 4, 3, 2 e 28
+uint rows[4] = {8, 7, 6, 5}; // Linhas do teclado, pinos 8, 7, 6 e 5
 
+// Teclas do teclado matricial
 char KEY_MAP[16] = {
     '1', '2', '3', 'A',
     '4', '5', '6', 'B',
@@ -93,14 +94,46 @@ char pico_keypad_get_key(void) {
     }
 }
 
-void blink(bool rstate,bool bstate,bool gstate) {
+void setting_outputs() {
+    gpio_init(RED);
+    gpio_set_dir(RED, GPIO_OUT);
+    gpio_put(RED, false);  
+
+    gpio_init(GREEN);
+    gpio_set_dir(GREEN, GPIO_OUT);
+    gpio_put(GREEN, false); 
+
+    gpio_init(BLUE);
+    gpio_set_dir(BLUE, GPIO_OUT);
+    gpio_put(BLUE, false);  
+
+    gpio_init(BUZZER);
+    gpio_set_dir(BUZZER, GPIO_OUT);
+    gpio_put(BUZZER, false); 
+}
+
+void blinking(bool rstate,bool bstate,bool gstate) {
     gpio_put(RED, rstate);  
     gpio_put(BLUE, bstate);
     gpio_put(GREEN, gstate);
 }
 
-void buzz(bool state) {
+void buzzing(bool state) {
     gpio_put(BUZZER, state);
+}
+
+void interspersed_blinking() {
+    gpio_put(RED, true);
+    sleep_ms(sleep);
+    gpio_put(RED, false);
+
+    gpio_put(BLUE, true);
+    sleep_ms(sleep);
+    gpio_put(BLUE, false);
+
+    gpio_put(GREEN, true);
+    sleep_ms(sleep);
+    gpio_put(GREEN, false);
 }
 
 void sleep_time(int time) {
@@ -117,25 +150,12 @@ int main() {
             "- C: LED Verde\n"
             "- D: Todos os LEDs\n"
             "- #: Buzzer\n"
+            "- *: Intercala os LEDs"
         "\n\n");
 
     pico_keypad_init(columns, rows, KEY_MAP);  
 
-    gpio_init(RED);
-    gpio_set_dir(RED, GPIO_OUT);
-    gpio_put(RED, false);  
-
-    gpio_init(GREEN);
-    gpio_set_dir(GREEN, GPIO_OUT);
-    gpio_put(GREEN, false); 
-
-    gpio_init(BLUE);
-    gpio_set_dir(BLUE, GPIO_OUT);
-    gpio_put(BLUE, false);  
-
-    gpio_init(BUZZER);
-    gpio_set_dir(BUZZER, GPIO_OUT);
-    gpio_put(BUZZER, false); 
+    setting_outputs();
 
     char key;
 
@@ -144,15 +164,16 @@ int main() {
 
         if (key != '\0') printf("Tecla digitada: %c\n", key);
 
-        if(key == 'A') blink(true,false,false); 
-        else if(key == 'B') blink(false,true,false); 
-        else if(key == 'C') blink(false,false,true); 
-        else if(key == 'D') blink(true,true,true); 
-        else if(key == '#') buzz(true);
+        if(key == 'A') blinking(true,false,false); 
+        else if(key == 'B') blinking(false,true,false); 
+        else if(key == 'C') blinking(false,false,true); 
+        else if(key == 'D') blinking(true,true,true); 
+        else if(key == '#') buzzing(true);
+        else if(key == '*') interspersed_blinking();
         else if (key >= '1' && key <= '9') sleep_time(key - '0');
         else {
-            blink(false,false,false);
-            buzz(false);
+            blinking(false,false,false);
+            buzzing(false);
         }
 
         sleep_ms(((key >= '0' && key <= '9') || key == '\0' || key == '*') ? 100 : sleep);
