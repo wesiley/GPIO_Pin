@@ -6,4 +6,4 @@ A - Liga o led vermelho;
 B - Liga o led azul;
 C - Liga o led verde;
 D - Liga todos os leds (luz branca);
-# - Toca o Buzzer.
+(#) - Toca o Buzzer.
