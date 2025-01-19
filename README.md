@@ -1,3 +1,6 @@
+# Integrantes
+Lucas Carneiro de Araújo Lima
+
 # GPIO_Pin
 
 __Subgrupo 0__<br>
