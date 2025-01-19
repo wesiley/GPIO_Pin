@@ -15,7 +15,7 @@ A atividade pede que haja controle de pinos GPIO com o emprego de um teclado mat
 
 O código com a lógica adotada pelo grupo se encontra no presente reposítório e o resultado pode ser assistido no vídeo alocado neste link: (adicionar link quando o vídeo estiver pronto).
 
-__Projetos pessoais publicados no Wokwi__
+## PROJETOS PUBLICADOS NO WOKWI WEB
 
 [Teclado Matricial - Ana Karolina Disigant Reis](https://wokwi.com/projects/420523283314492417)<br>
 [Teclado Matricial - Andressa Sousa Fonseca](https://wokwi.com/projects/420513649334097921)<br>
