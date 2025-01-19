@@ -15,6 +15,16 @@ A atividade pede que haja controle de pinos GPIO com o emprego de um teclado mat
 
 O código com a lógica adotada pelo grupo se encontra no presente reposítório e o resultado pode ser assistido no vídeo alocado neste link: [link aqui]().
 
+## PROJETOS PUBLICADOS NO WOKWI WEB
+
+[Teclado Matricial - Ana Karolina Disigant Reis](https://wokwi.com/projects/420523283314492417)<br>
+[Teclado Matricial - Andressa Sousa Fonseca](https://wokwi.com/projects/420513649334097921)<br>
+[Teclado Matricial - Gabriel Vitor]()<br>
+[Teclado Matricial - Lucas Carneiro de Araújo Lima](https://wokwi.com/projects/420539028431556609)<br>
+[Teclado Matricial - Luiz Rodrigo Oliveira da Silva](https://wokwi.com/projects/420521267008450561)<br>
+[Teclado Matricial - Matheus Santos Souza](https://wokwi.com/projects/420371965130407937)<br>
+[Teclado Matricial - Wesley R.](https://wokwi.com/projects/420390283337036801)
+
 ## INSTRUÇÕES DE USO DO PROGRAMA
 
 Este programa permite o controle interativo de LEDs e um buzzer usando um teclado matricial conectado a um Raspberry Pi Pico. Siga os passos abaixo para utilizar corretamente a aplicação.
@@ -69,14 +79,3 @@ O programa continuará em execução até ser interrompido manualmente. Para par
 ### Observações de Segurança
 - Sempre use resistores apropriados para os LEDs.
 - Evite sobrecarga de corrente nos pinos GPIO.
-
-
-## PROJETOS PUBLICADOS NO WOKWI WEB
-
-[Teclado Matricial - Ana Karolina Disigant Reis](https://wokwi.com/projects/420523283314492417)<br>
-[Teclado Matricial - Andressa Sousa Fonseca](https://wokwi.com/projects/420513649334097921)<br>
-[Teclado Matricial - Gabriel Vitor]()<br>
-[Teclado Matricial - Lucas Carneiro de Araújo Lima](https://wokwi.com/projects/420539028431556609)<br>
-[Teclado Matricial - Luiz Rodrigo Oliveira da Silva](https://wokwi.com/projects/420521267008450561)<br>
-[Teclado Matricial - Matheus Santos Souza](https://wokwi.com/projects/420371965130407937)<br>
-[Teclado Matricial - Wesley R.](https://wokwi.com/projects/420390283337036801)
