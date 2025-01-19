@@ -1,4 +1,0 @@
-[wokwi]
-version = 1
-firmware = 'build/tecladoMatricial.uf2'
-elf = 'build/tecladoMatricial.elf'
