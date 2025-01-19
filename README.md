@@ -17,18 +17,59 @@ O código com a lógica adotada pelo grupo se encontra no presente reposítório
 
 ## INSTRUÇÕES DE USO DO PROGRAMA
 
-Com os arquivos devidamente instalados e configurados o usuário receberá as instruções por meio de linha de comando e assim poderá escolher quais teclas utilizar no teclado matricial.
+Este programa permite o controle interativo de LEDs e um buzzer usando um teclado matricial conectado a um Raspberry Pi Pico. Siga os passos abaixo para utilizar corretamente a aplicação.
 
-__=== TESTE DO TECLADO MATRICIAL ===__<br>
-1 a 9: Aumenta o tempo de duracao padrão (100 ms) em N vezes<br>
-A: LED Vermelho<br>
-B: LED Azul<br>
-C: LED Verde<br>
-D: Todos os LEDs<br>
-#: Buzzer<br>
-*: Todos os LEDs intercalados<br>
+### Requisitos
+- Raspberry Pi Pico com o SDK configurado.
+- Teclado matricial com 4 colunas e 4 linhas.
+- LEDs conectados aos pinos GPIO 13 (vermelho), 12 (azul), e 11 (verde).
+- Buzzer conectado ao pino GPIO 21.
+- Conexões elétricas adequadas entre o teclado, LEDs, buzzer e o Raspberry Pi Pico.
 
-Sendo assim, o usuário pode definir o tempo de duração que os LEDs e o Buzzer estarão em atividade. Caso ele não escolha eles estarão ativos durante o tempo padrão de duração.
+### Inicialização
+1. Conecte os componentes conforme especificado.
+2. Compile e carregue o código para o Raspberry Pi Pico.
+3. Inicie o programa e abra uma interface de terminal para visualizar as mensagens.
+
+### Funcionamento
+Após o início do programa, a interface de terminal mostrará as seguintes instruções:
+
+```
+=== TESTE DO TECLADO MATRICIAL ===
+1 a 9: Aumenta o tempo de duração padrão (100 ms) em N vezes.
+A: Liga o LED vermelho.
+B: Liga o LED azul.
+C: Liga o LED verde.
+D: Liga todos os LEDs.
+#: Liga o buzzer.
+*: Pisca os LEDs em sequência intercalada.
+```
+
+### Detalhes do Controle
+- **Controle de Duração:** Pressione as teclas de '1' a '9' para aumentar o tempo de atividade dos LEDs e do buzzer. Por exemplo, pressionar '3' define o tempo como 300 ms.
+- **LEDs:** Pressione:
+  - 'A' para ativar o LED vermelho.
+  - 'B' para ativar o LED azul.
+  - 'C' para ativar o LED verde.
+  - 'D' para ativar todos os LEDs ao mesmo tempo.
+- **Buzzer:** Pressione '#' para ativá-lo.
+- **Piscar LEDs:** Pressione '*' para acionar uma sequência intercalada de piscamento dos LEDs.
+
+### Considerações
+- Se nenhuma tecla for pressionada, os LEDs e o buzzer permanecerão desligados.
+- O tempo padrão de atividade é de 100 ms, ajustável usando as teclas numéricas de 1 a 9.
+- As mensagens no terminal indicarão a tecla pressionada e a ação correspondente.
+
+### Exemplo de Uso
+Se o usuário pressionar '5', o tempo de atividade será ajustado para 500 ms. Pressionando 'A' em seguida, o LED vermelho acenderá por esse período.
+
+### Finalização
+O programa continuará em execução até ser interrompido manualmente. Para parar, desconecte o Raspberry Pi Pico ou encerre o processo no terminal.
+
+### Observações de Segurança
+- Sempre use resistores apropriados para os LEDs.
+- Evite sobrecarga de corrente nos pinos GPIO.
+
 
 ## PROJETOS PUBLICADOS NO WOKWI WEB
 
