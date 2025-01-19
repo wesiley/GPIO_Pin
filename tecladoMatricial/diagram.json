@@ -1,92 +1,94 @@
 {
-    "version": 1,
-    "author": "Lucas Carneiro de A. Lima",
-    "editor": "wokwi",
-    "parts": [
-      {
-        "type": "board-pi-pico-w",
-        "id": "pico",
-        "top": -60.85,
-        "left": -6.05,
-        "attrs": { "builder": "pico-sdk" }
-      },
-      {
-        "type": "wokwi-led",
-        "id": "led1",
-        "top": 121.2,
-        "left": -101.8,
-        "attrs": { "color": "red" }
-      },
-      {
-        "type": "wokwi-resistor",
-        "id": "r1",
-        "top": 157.85,
-        "left": -155,
-        "rotate": 180,
-        "attrs": { "value": "1000" }
-      },
-      {
-        "type": "wokwi-led",
-        "id": "led2",
-        "top": 44.4,
-        "left": -101.8,
-        "attrs": { "color": "limegreen" }
-      },
-      {
-        "type": "wokwi-led",
-        "id": "led3",
-        "top": 82.8,
-        "left": -101.8,
-        "attrs": { "color": "blue" }
-      },
-      {
-        "type": "wokwi-resistor",
-        "id": "r2",
-        "top": 119.45,
-        "left": -155,
-        "rotate": 180,
-        "attrs": { "value": "1000" }
-      },
-      {
-        "type": "wokwi-resistor",
-        "id": "r3",
-        "top": 81.05,
-        "left": -155,
-        "rotate": 180,
-        "attrs": { "value": "1000" }
-      },
-      {
-        "type": "wokwi-buzzer",
-        "id": "bz1",
-        "top": 35.7,
-        "left": 110.1,
-        "rotate": 90,
-        "attrs": { "volume": "0.1" }
-      },
-      { "type": "wokwi-membrane-keypad", "id": "keypad1", "top": -2, "left": -560.8, "attrs": {} }
-    ],
-    "connections": [
-      [ "pico:GP0", "$serialMonitor:RX", "", [] ],
-      [ "pico:GP1", "$serialMonitor:TX", "", [] ],
-      [ "led1:C", "r1:1", "gray", [ "v0" ] ],
-      [ "pico:GND.4", "r1:2", "black", [ "h-38.4", "v66.39", "h-134.4", "v-19.2" ] ],
-      [ "pico:GP13", "led1:A", "green", [ "h-48", "v56.79" ] ],
-      [ "led2:A", "pico:GP11", "green", [ "v0" ] ],
-      [ "led3:A", "pico:GP12", "green", [ "h19.2", "v-27.99" ] ],
-      [ "r2:1", "led3:C", "green", [ "v0" ] ],
-      [ "r3:1", "led2:C", "green", [ "v0" ] ],
-      [ "pico:GND.4", "r2:2", "black", [ "h-38.4", "v66.39", "h-134.4", "v-57.6" ] ],
-      [ "pico:GND.4", "r3:2", "black", [ "h-38.4", "v66.39", "h-134.4", "v-96" ] ],
-      [ "pico:GP21", "bz1:2", "green", [ "h0" ] ],
-      [ "pico:GND.6", "bz1:1", "black", [ "h0" ] ],
-      [ "keypad1:C3", "pico:GP2", "green", [ "v86.4", "h134.25", "v-441.6" ] ],
-      [ "pico:GP3", "keypad1:C2", "green", [ "h-259.2", "v441.6", "h-153.6" ] ],
-      [ "keypad1:C1", "pico:GP4", "green", [ "v105.6", "h172.7", "v-441.6" ] ],
-      [ "pico:GP5", "keypad1:R4", "green", [ "h-240", "v441.6", "h-191.8" ] ],
-      [ "pico:GP6", "keypad1:R3", "green", [ "h-230.4", "v432", "h-210.9" ] ],
-      [ "pico:GP7", "keypad1:R2", "green", [ "h-220.8", "v432", "h-230" ] ],
-      [ "pico:GP8", "keypad1:R1", "green", [ "h-211.2", "v432", "h-249.6" ] ],
-      [ "pico:GP28", "keypad1:C4", "green", [ "h29.11", "v-86.4", "h-374.4", "v489.6", "h-114.9" ] ]
-    ],
-    "dependencies": {}
-  }
+  "version": 1,
+  "author": "Gabriel Vitor",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-pi-pico-w",
+      "id": "microcontroller",
+      "top": -32.05,
+      "left": 176.35,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-membrane-keypad",
+      "id": "keyboard1",
+      "top": -491.6,
+      "left": -196,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "green_led",
+      "top": 198,
+      "left": 99.8,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "blue_led",
+      "top": 255.6,
+      "left": 99.8,
+      "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "red_led",
+      "top": 322.8,
+      "left": 99.8,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "resistor1",
+      "top": 224.75,
+      "left": 9.6,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "resistor2",
+      "top": 311.15,
+      "left": 9.6,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "resistor3",
+      "top": 397.55,
+      "left": 9.6,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "buzzer1",
+      "top": -64.8,
+      "left": 337.8,
+      "attrs": { "volume": "0.1" }
+    }
+  ],
+  "connections": [
+    [ "microcontroller:GP0", "$serialMonitor:RX", "", [] ],
+    [ "microcontroller:GP1", "$serialMonitor:TX", "", [] ],
+    [ "keyboard1:C3", "microcontroller:GP2", "green", [ "v19.2", "h124.65", "v-115.2" ] ],
+    [ "keyboard1:C2", "microcontroller:GP3", "green", [ "v28.8", "h144", "v-105.6" ] ],
+    [ "keyboard1:C1", "microcontroller:GP4", "green", [ "v38.4", "h163.1", "v-105.6" ] ],
+    [ "keyboard1:R4", "microcontroller:GP5", "green", [ "v48", "h182.2", "v-105.6" ] ],
+    [ "keyboard1:R3", "microcontroller:GP6", "green", [ "v57.6", "h201.3", "v-96" ] ],
+    [ "keyboard1:R2", "microcontroller:GP7", "green", [ "v67.2", "h220.4", "v-96" ] ],
+    [ "keyboard1:R1", "microcontroller:GP8", "green", [ "v76.8", "h240", "v-96" ] ],
+    [ "microcontroller:GP11", "green_led:A", "green", [ "h-48", "v115.2" ] ],
+    [ "green_led:C", "resistor1:2", "green", [ "v0" ] ],
+    [ "microcontroller:GP12", "blue_led:A", "green", [ "h-38.4", "v192.04" ] ],
+    [ "microcontroller:GP13", "red_led:A", "green", [ "h-28.8", "v268.84" ] ],
+    [ "red_led:C", "resistor3:2", "green", [ "v0" ] ],
+    [ "blue_led:C", "resistor2:2", "green", [ "v0" ] ],
+    [ "microcontroller:GND.4", "resistor3:1", "black", [ "h-19.2", "v278.44", "h-172.8" ] ],
+    [ "resistor2:1", "resistor3:1", "green", [ "v0" ] ],
+    [ "resistor2:1", "resistor1:1", "green", [ "v0" ] ],
+    [ "microcontroller:GND.6", "buzzer1:1", "black", [ "h0" ] ],
+    [ "microcontroller:GP21", "buzzer1:2", "green", [ "h0" ] ],
+    [ "keyboard1:C4", "microcontroller:GP28", "green", [ "v9.6", "h287.7", "v182.4" ] ]
+  ],
+  "dependencies": {}
+}
