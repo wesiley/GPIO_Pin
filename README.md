@@ -1,6 +1,3 @@
-# Integrantes
-Lucas Carneiro de Araújo Lima
-
 # GPIO_Pin
 
 __Subgrupo 0__<br>
@@ -33,15 +30,15 @@ O código com a lógica adotada pelo grupo se encontra no presente reposítório
 Este programa permite o controle interativo de LEDs e um buzzer usando um teclado matricial conectado a um Raspberry Pi Pico. Siga os passos abaixo para utilizar corretamente a aplicação.
 
 ### Requisitos
-- Raspberry Pi Pico com o SDK configurado.
-- Teclado matricial com 4 colunas e 4 linhas.
-- LEDs conectados aos pinos GPIO 13 (vermelho), 12 (azul), e 11 (verde).
-- Buzzer conectado ao pino GPIO 21.
+- Raspberry Pi Pico com o SDK configurado;
+- Teclado matricial com 4 colunas e 4 linhas;
+- LEDs conectados aos pinos GPIO 13 (vermelho), 12 (azul), e 11 (verde);
+- Buzzer conectado ao pino GPIO 21;
 - Conexões elétricas adequadas entre o teclado, LEDs, buzzer e o Raspberry Pi Pico.
 
 ### Inicialização
-1. Conecte os componentes conforme especificado.
-2. Compile e carregue o código para o Raspberry Pi Pico.
+1. Conecte os componentes conforme especificado;
+2. Compile e carregue o código para o Raspberry Pi Pico;
 3. Inicie o programa e abra uma interface de terminal para visualizar as mensagens.
 
 ### Funcionamento
