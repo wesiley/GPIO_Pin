@@ -34,7 +34,7 @@ Sendo assim, o usuário pode definir o tempo de duração que os LEDs e o Buzzer
 
 [Teclado Matricial - Ana Karolina Disigant Reis](https://wokwi.com/projects/420523283314492417)<br>
 [Teclado Matricial - Andressa Sousa Fonseca](https://wokwi.com/projects/420513649334097921)<br>
-[Teclado Matricial - Gabriel Vitor]()<br>
+[Teclado Matricial - Gabriel Vitor](https://wokwi.com/projects/420540418141968385)<br>
 [Teclado Matricial - Lucas Carneiro de Araújo Lima](https://wokwi.com/projects/420539028431556609)<br>
 [Teclado Matricial - Luiz Rodrigo Oliveira da Silva](https://wokwi.com/projects/420521267008450561)<br>
 [Teclado Matricial - Matheus Santos Souza](https://wokwi.com/projects/420371965130407937)<br>
