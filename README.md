@@ -1,4 +1,4 @@
-Autor: Matheus Santos Souza
+Autor: Matheus Santos Souza.
 Link Wokwi: https://wokwi.com/projects/420371965130407937
 
 Comandos esperados:
