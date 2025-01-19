@@ -1,181 +1,157 @@
-#include <stdio.h>
+#include <stdlib.h>
 #include "pico/stdlib.h"
 #include "hardware/timer.h"
 
-#define RED 13 
-#define BLUE 12
-#define GREEN 11
-#define BUZZER 21
+// Definições de pinos
+#define PIN_LED_R 13
+#define PIN_LED_B 12
+#define PIN_LED_G 11
+#define PIN_BUZZER 21
 
-uint columns[4] = {4, 3, 2, 28}; 
-uint rows[4] = {8, 7, 6, 5};
+// Definição dos pinos do teclado
+#define NUM_COLUNAS 4
+#define NUM_LINHAS 4
 
-char KEY_MAP[16] = {
+uint pinos_colunas[NUM_COLUNAS] = {4, 3, 2, 28};
+uint pinos_linhas[NUM_LINHAS] = {8, 7, 6, 5};
+
+char MAPA_TECLAS[16] = {
     '1', '2', '3', 'A',
     '4', '5', '6', 'B',
     '7', '8', '9', 'C',
     '*', '0', '#', 'D'
 };
 
-uint _columns[4]; 
-uint _rows[4]; 
+// Máscaras de coluna e estado do teclado
+uint mascara_colunas[NUM_COLUNAS];
+uint todas_colunas_mascara = 0x0;
+char valores_matriz[16];
 
-char _matrix_values[16]; 
-
-uint all_columns_mask = 0x0; 
-uint column_mask[4]; 
-
-int sleep = 100;
-
-void pico_keypad_init(uint columns[4], uint rows[4], char matrix_values[16]) {
+// Inicializa o teclado matricial
+void inicializar_teclado(uint colunas[NUM_COLUNAS], uint linhas[NUM_LINHAS], char valores[16]) {
     for (int i = 0; i < 16; i++) {
-        _matrix_values[i] = matrix_values[i];
+        valores_matriz[i] = valores[i];
     }
 
-    for (int K = 0; K < 4; K++) {
-        _columns[K] = columns[K];
-        _rows[K] = rows[K];
+    for (int col = 0; col < NUM_COLUNAS; col++) {
+        gpio_init(colunas[col]);
+        gpio_init(linhas[col]);
+        gpio_set_dir(colunas[col], GPIO_IN);
+        gpio_set_dir(linhas[col], GPIO_OUT);
+        gpio_put(linhas[col], 1); // Linhas ativas com nível lógico alto
 
-        gpio_init(_columns[K]); 
-        gpio_init(_rows[K]); 
-
-        gpio_set_dir(_columns[K], GPIO_IN); 
-        gpio_set_dir(_rows[K], GPIO_OUT); 
-
-        gpio_put(_rows[K], true);
-
-        all_columns_mask += (1 << _columns[K]); 
-        column_mask[K] = 1 << _columns[K]; 
+        todas_colunas_mascara |= (1 << colunas[col]);
+        mascara_colunas[col] = 1 << colunas[col];
     }
 }
 
-char pico_keypad_get_key(void) {
-    int row;
-    uint32_t cols;
-
-    cols = gpio_get_all(); 
-    cols = cols & all_columns_mask; 
-
-    if (cols == 0x0) {
+// Captura a tecla pressionada
+char obter_tecla(void) {
+    int linha;
+    uint32_t colunas = gpio_get_all() & todas_colunas_mascara;
+    if (colunas == 0x0) {
         return 0;
     }
 
-    for (int j = 0; j < 4; j++) {
-        gpio_put(_rows[j], 0);
+    for (int l = 0; l < NUM_LINHAS; l++) {
+        gpio_put(pinos_linhas[l], 0); // Desativa todas as linhas antes da varredura
     }
 
-    for (row = 0; row < 4; row++) {
-        gpio_put(_rows[row], true); 
-        busy_wait_us(1000); 
-        cols = gpio_get_all(); 
-        gpio_put(_rows[row], false);  
-        cols = cols & all_columns_mask; 
+    for (linha = 0; linha < NUM_LINHAS; linha++) {
+        gpio_put(pinos_linhas[linha], 1);  // Ativa linha
+        busy_wait_us(10000); // Atraso para estabilizar
+        colunas = gpio_get_all() & todas_colunas_mascara;
+        gpio_put(pinos_linhas[linha], 0); // Desativa linha
 
-        if (cols != 0x0) {
+        if (colunas != 0x0) {
             break;
         }
     }
 
-    for (int w = 0; w < 4; w++) {
-        gpio_put(_rows[w], 1);
+    for (int l = 0; l < NUM_LINHAS; l++) {
+        gpio_put(pinos_linhas[l], 1); // Reativa todas as linhas
     }
 
-    if (cols == column_mask[0]) {
-        return (char)_matrix_values[row * 4 + 0];
-    } else if (cols == column_mask[1]) {
-        return (char)_matrix_values[row * 4 + 1];
-    } else if (cols == column_mask[2]) {
-        return (char)_matrix_values[row * 4 + 2];
-    } else if (cols == column_mask[3]) {
-        return (char)_matrix_values[row * 4 + 3];
-    } else {
-        return 0;
+    for (int col = 0; col < NUM_COLUNAS; col++) {
+        if (colunas == mascara_colunas[col]) {
+            return valores_matriz[linha * NUM_COLUNAS + col];
+        }
     }
+    return 0;
 }
 
-void setting_outputs() {
-    gpio_init(RED);
-    gpio_set_dir(RED, GPIO_OUT);
-    gpio_put(RED, false);  
-
-    gpio_init(GREEN);
-    gpio_set_dir(GREEN, GPIO_OUT);
-    gpio_put(GREEN, false); 
-
-    gpio_init(BLUE);
-    gpio_set_dir(BLUE, GPIO_OUT);
-    gpio_put(BLUE, false);  
-
-    gpio_init(BUZZER);
-    gpio_set_dir(BUZZER, GPIO_OUT);
-    gpio_put(BUZZER, false); 
+// Funções para controlar LEDs
+void ativar_led(uint pino) {
+    gpio_put(pino, 1);
 }
 
-void blinking(bool rstate,bool bstate,bool gstate) {
-    gpio_put(RED, rstate);  
-    gpio_put(BLUE, bstate);
-    gpio_put(GREEN, gstate);
+void desativar_led(uint pino) {
+    gpio_put(pino, 0);
 }
 
-void buzzing(bool state) {
-    gpio_put(BUZZER, state);
+// Função para controlar o Buzzer
+void ativar_buzzer(void) {
+    gpio_put(PIN_BUZZER, 1);
 }
 
-void interspersed_blinking() {
-    gpio_put(RED, true);
-    sleep_ms(sleep);
-    gpio_put(RED, false);
-
-    gpio_put(BLUE, true);
-    sleep_ms(sleep);
-    gpio_put(BLUE, false);
-
-    gpio_put(GREEN, true);
-    sleep_ms(sleep);
-    gpio_put(GREEN, false);
-}
-
-void sleep_time(int time) {
-    sleep = time * 100;
+void desativar_buzzer(void) {
+    gpio_put(PIN_BUZZER, 0);
 }
 
 int main() {
-    stdio_init_all();  
+    inicializar_teclado(pinos_colunas, pinos_linhas, MAPA_TECLAS);
 
-    printf("=== TESTE DO TECLADO MATRICIAL ===\n");
-    printf("- 1 a 9: Aumenta o tempo de duracao padrão (100 ms) em N vezes\n"
-            "- A: LED Vermelho\n"
-            "- B: LED Azul\n"
-            "- C: LED Verde\n"
-            "- D: Todos os LEDs\n"
-            "- #: Buzzer\n"
-            "- *: Intercala os LEDs\n"
-        "\n\n");
+    // Configuração dos LEDs e do Buzzer
+    gpio_init(PIN_LED_R);
+    gpio_set_dir(PIN_LED_R, GPIO_OUT);
+    gpio_put(PIN_LED_R, 0);
 
-    pico_keypad_init(columns, rows, KEY_MAP);  
+    gpio_init(PIN_LED_G);
+    gpio_set_dir(PIN_LED_G, GPIO_OUT);
+    gpio_put(PIN_LED_G, 0);
 
-    setting_outputs();
+    gpio_init(PIN_LED_B);
+    gpio_set_dir(PIN_LED_B, GPIO_OUT);
+    gpio_put(PIN_LED_B, 0);
 
-    char key;
+    gpio_init(PIN_BUZZER);
+    gpio_set_dir(PIN_BUZZER, GPIO_OUT);
+    gpio_put(PIN_BUZZER, 0);
+
+    char tecla_pressionada;
 
     while (true) {
-        key = pico_keypad_get_key();
+        tecla_pressionada = obter_tecla();  // Obtém a tecla pressionada
 
-        if (key != '\0') printf("Tecla digitada: %c\n", key);
-
-        if(key == 'A') blinking(true,false,false); 
-        else if(key == 'B') blinking(false,true,false); 
-        else if(key == 'C') blinking(false,false,true); 
-        else if(key == 'D') blinking(true,true,true); 
-        else if(key == '#') buzzing(true);
-        else if(key == '*') interspersed_blinking();
-        else if (key >= '1' && key <= '9') sleep_time(key - '0');
-        else {
-            blinking(false,false,false);
-            buzzing(false);
+        // Controle dos LEDs e do Buzzer
+        switch (tecla_pressionada) {
+            case 'A':
+                ativar_led(PIN_LED_R); // Liga o LED vermelho
+                break;
+            case 'B':
+                ativar_led(PIN_LED_B); // Liga o LED azul
+                break;
+            case 'C':
+                ativar_led(PIN_LED_G); // Liga o LED verde
+                break;
+            case 'D':
+                ativar_led(PIN_LED_R); // Liga todos os LEDs
+                ativar_led(PIN_LED_B);
+                ativar_led(PIN_LED_G);
+                break;
+            case '#':
+                ativar_buzzer(); // Liga o buzzer
+                break;
+            default:
+                // Desliga os LEDs e o buzzer
+                desativar_led(PIN_LED_R);
+                desativar_led(PIN_LED_B);
+                desativar_led(PIN_LED_G);
+                desativar_buzzer();
+                break;
         }
 
-        sleep_ms(((key >= '0' && key <= '9') || key == '\0' || key == '*') ? 100 : sleep);
+        sleep_ms(50);  // Delay para evitar leituras rápidas demais
     }
 
     return 0;
