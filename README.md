@@ -61,10 +61,10 @@ D: Liga todos os LEDs.
 ### Detalhes do Controle
 - **Controle de Duração:** Pressione as teclas de '1' a '9' para aumentar o tempo de atividade dos LEDs e do buzzer. Por exemplo, pressionar '3' define o tempo como 300 ms.
 - **LEDs:** Pressione:
-  - 'A' para ativar o LED vermelho.
-  - 'B' para ativar o LED azul.
-  - 'C' para ativar o LED verde.
-  - 'D' para ativar todos os LEDs ao mesmo tempo.
+   'A' para ativar o LED vermelho.<br>
+   'B' para ativar o LED azul.<br>
+   'C' para ativar o LED verde.<br>
+   'D' para ativar todos os LEDs ao mesmo tempo.<br>
 - **Buzzer:** Pressione '#' para ativá-lo.
 - **Piscar LEDs:** Pressione '*' para acionar uma sequência intercalada de piscamento dos LEDs.
 
