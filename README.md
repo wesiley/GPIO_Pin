@@ -13,7 +13,7 @@ A atividade pede que haja controle de pinos GPIO com o emprego de um teclado mat
 3) Componente Buzzer;
 4) Microcontrolador Raspberry Pi Pico W.
 
-O código com a lógica adotada pelo grupo se encontra no presente reposítório e o resultado pode ser assistido no vídeo alocado neste link: [Aplicação com teclado matricial]().
+O código com a lógica adotada pelo grupo se encontra no presente reposítório e o resultado pode ser assistido no vídeo alocado neste link: [Aplicação com teclado matricial](https://www.youtube.com/watch?v=Z_D6pZn52zY).
 
 ## PROJETOS PUBLICADOS NO WOKWI WEB
 
