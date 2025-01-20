@@ -1,3 +1,7 @@
+/*
+    Aluno: Lucas Carneiro de Araújo Lima
+*/
+
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/timer.h"
