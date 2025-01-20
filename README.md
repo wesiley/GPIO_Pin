@@ -3,6 +3,8 @@
 __Subgrupo 0__<br>
 Repositório criado a fim de registrar a realização da atividade de cunho __obrigatório__ referente à aula síncrona do dia 14/01/2025.
 
+__Componentes do grupo:__ Ana Karolina Disigant Reis, Andressa Sousa Fonseca, Gabriel Vitor, Lucas Carneiro de Araújo Lima, Luiz Rodrigo Oliveira da Silva, Matheus Santos Souza e Wesley R.
+
 ## ATIVIDADE 
 __Microcontroladores - GPIO__<br>
 
